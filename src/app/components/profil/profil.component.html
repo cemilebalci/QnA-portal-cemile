@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <div class="row">
+
+    <div class="col-md-4">
+      <form [formGroup]="frm" (ngSubmit)="Kaydet()">
+        <div class="card">
+          <div class="card-header bg-dark text-white">
+            <h4>Profil Bilgileri</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label>Adı Soyadı</label>
+              <input type="text" class="form-control" placeholder="Ad-soyad" formControlName="displayName">
+            </div>
+            <div class="form-group">
+              <label>Telefon</label>
+              <input type="text" class="form-control" placeholder="(+90)--- --- -- --)" formControlName="tel">
+            </div>
+            <div class="form-group">
+              <label>E-posta</label>
+              <textarea rows="3" class="form-control" placeholder="ornek@gmail.com" formControlName="E-posta"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Adres</label>
+              <textarea rows="3" class="form-control" placeholder="adres ekle" formControlName="adres"></textarea>
+            </div>
+          </div>
+          <div class="card-footer">
+            <input type="submit" class="btn btn-dark" value="Kaydet">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <div class="card" *ngIf="uye | async as user">
+        <div class="card-header bg-dark text-white">
+          <h4>Profil Fotoğrafı</h4>
+        </div>
+        <div class="card-body">
+          <img width="120" height="120" [src]="user.foto ?? 'assets/profil.png'" />
+          <input #inputField type="file" hidden (change)="ResimYukle($event, user)" />
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-dark" (click)="inputField.click()">Resim Seç</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
